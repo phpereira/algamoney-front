@@ -1,1 +1,16 @@
-<p>navbar works!</p>
+<nav class="navbar">
+  <div class="conteiner">
+      <div class="p-grid" style="margin-top: 0;" >
+        <div class="p-col-12">
+              <a href="javascript:;" class="navbar-toggle" (click)="exibindoMenu = !exibindoMenu"><i class="pi pi-bars"> </i></a>
+          </div>
+        </div>
+  </div>
+
+  <ul class="navbar-menu" [hidden]="!exibindoMenu">
+    <li class="navbar-usuario">José da Silva</li>
+    <li class="navbar-menuitem"><a href="#">Lançamentos</a></li>
+    <li class="navbar-menuitem"><a href="#">Pessoas</a></li>
+    <li class="navbar-menuitem"><a href="#">Logout</a></li>
+  </ul>
+</nav>

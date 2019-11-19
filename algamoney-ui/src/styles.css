@@ -1,11 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
 body {
+  margin: 0;
   font-family: Arial, Helvetica, sans-serif;
   color: #404C51;
 }
 
 label {
   font-weight: bold;
+}
+
+.conteiner {
+  margin: 0 10px;
 }
 
 @media (min-width: 1200px){
@@ -28,6 +33,15 @@ label {
   text-align: center;
 }
 .col-actions-header {
-  width: 91px;
+  width: 95px;
   text-align: center;
 }
+
+.col-actions-content a {
+  margin-right: 2px;
+}
+
+.col-actions-content button {
+  margin-left: 2px;
+}
+
