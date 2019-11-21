@@ -25,6 +25,7 @@ label {
 }
 .col-valor-content {
   text-align: right;
+
 }
 .col-data-header {
   width: 120px;
@@ -43,5 +44,9 @@ label {
 
 .col-actions-content button {
   margin-left: 2px;
+}
+
+.p-grid {
+  margin-top: 0;
 }
 
