@@ -10,12 +10,16 @@ import { ButtonModule } from 'primeng/button';
 import {TableModule} from 'primeng/table';
 import {PaginatorModule} from 'primeng/paginator';
 import {TooltipModule} from 'primeng/tooltip';
+import {CalendarModule} from 'primeng/calendar';
+import {InputTextareaModule} from 'primeng/inputtextarea';
+
 import { LancamentosPesquisaComponent } from './lancamentos-pesquisa/lancamentos-pesquisa.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { PessoaPesquisaComponent } from './pessoa-pesquisa/pessoa-pesquisa.component';
 
 import { registerLocaleData } from '@angular/common';
 import localept from '@angular/common/locales/pt';
+import { LancamentoCadastroComponent } from './lancamento-cadastro/lancamento-cadastro.component';
 
 registerLocaleData(localept, 'pt');
 
@@ -24,7 +28,8 @@ registerLocaleData(localept, 'pt');
     AppComponent,
     LancamentosPesquisaComponent,
     NavbarComponent,
-    PessoaPesquisaComponent
+    PessoaPesquisaComponent,
+    LancamentoCadastroComponent
   ],
   imports: [
     CommonModule,
@@ -34,7 +39,9 @@ registerLocaleData(localept, 'pt');
     ButtonModule,
     TableModule,
     PaginatorModule,
-    TooltipModule
+    TooltipModule,
+    CalendarModule,
+    InputTextareaModule
   ],
   providers: [{provide: LOCALE_ID, useValue: 'pt'}],
   bootstrap: [AppComponent]
