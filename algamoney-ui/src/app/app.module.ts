@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule, LOCALE_ID } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,6 +14,12 @@ import {PaginatorModule} from 'primeng/paginator';
 import {TooltipModule} from 'primeng/tooltip';
 import {CalendarModule} from 'primeng/calendar';
 import {InputTextareaModule} from 'primeng/inputtextarea';
+import {SelectButtonModule} from 'primeng/selectbutton';
+import {DropdownModule} from 'primeng/dropdown';
+import {InputMaskModule} from 'primeng/inputmask';
+import {MessageModule} from 'primeng/message';
+
+import { NgxCurrencyModule } from 'ngx-currency';
 
 import { LancamentosPesquisaComponent } from './lancamentos-pesquisa/lancamentos-pesquisa.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -20,8 +28,23 @@ import { PessoaPesquisaComponent } from './pessoa-pesquisa/pessoa-pesquisa.compo
 import { registerLocaleData } from '@angular/common';
 import localept from '@angular/common/locales/pt';
 import { LancamentoCadastroComponent } from './lancamento-cadastro/lancamento-cadastro.component';
+import { PessoaCadastroComponent } from './pessoa-cadastro/pessoa-cadastro.component';
 
 registerLocaleData(localept, 'pt');
+
+
+export const customCurrencyMaskConfig = {
+  align: 'right',
+  allowNegative: false,
+  allowZero: true,
+  decimal: ',',
+  precision: 2,
+  prefix: 'R$ ',
+  suffix: '',
+  thousands: '.',
+  nullable: true
+};
+
 
 @NgModule({
   declarations: [
@@ -29,10 +52,12 @@ registerLocaleData(localept, 'pt');
     LancamentosPesquisaComponent,
     NavbarComponent,
     PessoaPesquisaComponent,
-    LancamentoCadastroComponent
+    LancamentoCadastroComponent,
+    PessoaCadastroComponent
   ],
   imports: [
     CommonModule,
+    BrowserAnimationsModule,
     BrowserModule,
     AppRoutingModule,
     InputTextModule,
@@ -41,7 +66,13 @@ registerLocaleData(localept, 'pt');
     PaginatorModule,
     TooltipModule,
     CalendarModule,
-    InputTextareaModule
+    InputTextareaModule,
+    SelectButtonModule,
+    DropdownModule,
+    NgxCurrencyModule.forRoot(customCurrencyMaskConfig),
+    FormsModule,
+    InputMaskModule,
+    MessageModule
   ],
   providers: [{provide: LOCALE_ID, useValue: 'pt'}],
   bootstrap: [AppComponent]
