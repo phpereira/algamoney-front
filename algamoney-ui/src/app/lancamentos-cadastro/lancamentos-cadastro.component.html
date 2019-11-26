@@ -1,0 +1,99 @@
+<div class="container">
+  <form #f="ngForm" autocomplete="off">
+
+    <div class="p-grid">
+      <div class="p-col-12">
+        <h1>Novo Lançamento</h1>
+      </div>
+
+      <div class="p-col-12">
+        <p-selectButton [options]="tipos" #tipo></p-selectButton>
+      </div>
+
+      <div class="p-col-6 p-lg-3 ui-fluid">
+        <label>
+          Vencimento
+        </label>
+        <p-calendar dateFormat="dd/mm/yy" name="vencimento" ngModel #vencimento="ngModel" required></p-calendar>
+        <app-message [control]="vencimento" error="required" text="Informe uma data de vencimento."></app-message>
+      </div>
+
+      <div class="p-col-6 p-lg-3 ui-fluid">
+        <label>
+          {{ tipo.value === 'RECEITA' ? 'Recebimento' : 'Pagamento'}}
+        </label>
+        <p-calendar dateFormat="dd/mm/yy"></p-calendar>
+
+      </div>
+
+      <div class="p-col-12 p-lg-9 ui-fluid">
+        <label>
+          Descrição
+        </label>
+        <input pInputText type="text" name="descricao" ngModel #descricao="ngModel" required minlength="5">
+        <!-- Resposta de erro utilizando um componente message para tratamento -->
+        <app-message [control]="descricao" error="required" text="Informe uma descrição."></app-message>
+        <app-message [control]="descricao" error="minlength"
+          text="Mínimo de {{ descricao.errors?.minlength?.requiredLength }} caracteres."></app-message>
+
+        <!--
+        Resposta de erro utilizando angular no próprio HTML
+          <div *ngIf="descricao.hasError('required') && descricao.dirty"
+            class="ui-messages ui-messages-error">
+            Informe uma descrição
+          </div>
+
+          <div *ngIf="descricao.hasError('minlength') && descricao.dirty" class="ui-messages ui-messages-error">
+            Mínimo de {{ descricao.errors.minlength.requiredLength }} caracteres. Você digitou apenas
+            {{ descricao.errors.minlength.actualLength }}
+          </div>
+        -->
+
+        <!--
+        Resposta de erro usando o componente p-message do PrimeNG
+          <p-message severity="error" text="Descrição é obrigatório" *ngIf="descricao.hasError('required') && descricao.dirty"></p-message>
+          <p-message severity="error" text="Mínimo de {{ descricao.errors.minlength.requiredLength }} caracteres." *ngIf="descricao.hasError('minlength') && descricao.dirty"></p-message>
+        -->
+      </div>
+
+      <div class="p-col-12 p-lg-3 ui-fluid">
+        <label>
+          Valor
+        </label>
+        <input class="input-value" currencyMask [(ngModel)]="valor" pInputText type="text" name="valor-lanc" ngModel required>
+
+      </div>
+
+      <div class="p-col-12 p-lg-6 ui-fluid">
+        <label>
+          Categoria
+        </label>
+        <p-dropdown [options]="categorias" placeholder="Selecione" name="categoria" ngModel required></p-dropdown>
+      </div>
+
+      <div class="p-col-12 p-lg-6 ui-fluid">
+        <label>
+          Pessoa
+        </label>
+        <p-dropdown [options]="pessoas" [filter]="true" placeholder="Selecione" name="pessoa-filter" ngModel required></p-dropdown>
+      </div>
+
+      <div class="p-col-12 ui-fluid">
+        <label>
+          Observação
+        </label>
+        <textarea pInputTextarea rows="3"></textarea>
+      </div>
+
+      <div class="p-col-12">
+        <button class="btn-cadastro-lancamento" pButton type="submit" label="Salvar" [disabled]="f.invalid"></button>
+
+        <button pButton type="button" class="ui-button-success btn-cadastro-lancamento" label="Novo"></button>
+
+        <a href="javascript:;">Voltar para a pesquisa</a>
+
+      </div>
+    </div>
+  </form>
+</div>
+-->

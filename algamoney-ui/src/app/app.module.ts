@@ -23,12 +23,15 @@ import { NgxCurrencyModule } from 'ngx-currency';
 
 import { LancamentosPesquisaComponent } from './lancamentos-pesquisa/lancamentos-pesquisa.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { PessoaPesquisaComponent } from './pessoa-pesquisa/pessoa-pesquisa.component';
+import { PessoaPesquisaComponent } from './pessoas-pesquisa/pessoas-pesquisa.component';
 
 import { registerLocaleData } from '@angular/common';
 import localept from '@angular/common/locales/pt';
-import { LancamentoCadastroComponent } from './lancamento-cadastro/lancamento-cadastro.component';
-import { PessoaCadastroComponent } from './pessoa-cadastro/pessoa-cadastro.component';
+import { LancamentoCadastroComponent } from './lancamentos-cadastro/lancamentos-cadastro.component';
+import { PessoaCadastroComponent } from './pessoas-cadastro/pessoas-cadastro.component';
+import { MessageComponent } from './message/message.component';
+import { LancamentosGridComponent } from './lancamentos-grid/lancamentos-grid.component';
+import { PessoasGridComponent } from './pessoas-grid/pessoas-grid.component';
 
 registerLocaleData(localept, 'pt');
 
@@ -53,7 +56,10 @@ export const customCurrencyMaskConfig = {
     NavbarComponent,
     PessoaPesquisaComponent,
     LancamentoCadastroComponent,
-    PessoaCadastroComponent
+    PessoaCadastroComponent,
+    MessageComponent,
+    LancamentosGridComponent,
+    PessoasGridComponent
   ],
   imports: [
     CommonModule,
