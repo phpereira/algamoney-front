@@ -1,3 +1,4 @@
+import { LancamentoService } from './lancamentos/lancamento.service';
 import { CoreModule } from './core/core.module';
 import { CommonModule, registerLocaleData } from '@angular/common';
 import localept from '@angular/common/locales/pt';
@@ -9,6 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LancamentosModule } from './lancamentos/lancamentos.module';
 import { PessoasModule } from './pessoas/pessoas.module';
+import { HttpClientModule } from '@angular/common/http';
 
 registerLocaleData(localept, 'pt');
 
@@ -20,6 +22,7 @@ registerLocaleData(localept, 'pt');
     LancamentosModule,
     PessoasModule,
     CoreModule,
+    HttpClientModule,
 
     MessageModule,
 
@@ -28,7 +31,7 @@ registerLocaleData(localept, 'pt');
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [{provide: LOCALE_ID, useValue: 'pt'}],
+  providers: [LancamentoService, {provide: LOCALE_ID, useValue: 'pt'}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
