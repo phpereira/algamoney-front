@@ -1,4 +1,11 @@
+import { ToastyService } from 'ng2-toasty';
+import { LancamentoService } from './../lancamento.service';
+import { PessoaService } from './../../pessoas/pessoa.service';
+import { ErrorHandlerService } from './../../core/error-handler.service';
+import { CategoriaService } from './../../categorias/categoria.service';
 import { Component, OnInit } from '@angular/core';
+import { Lancamento } from 'src/app/core/model';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-lancamentos-cadastro',
@@ -12,22 +19,49 @@ export class LancamentoCadastroComponent implements OnInit {
     { label: 'Despesa', value: 'DESPESA' }
   ];
 
-  categorias = [
-    { label: 'Alimentação', value: 1 },
-    { label: 'Transporte', value: 2 },
-  ];
-
-  pessoas = [
-    { label: 'João da Silva', value: 4 },
-    { label: 'Sebastião Souza', value: 9 },
-    { label: 'Maria Abadia', value: 3 },
-  ];
+  categorias = [];
+  pessoas = [];
+  lancamento = new Lancamento();
 
   valor: any = 0;
 
-  constructor() { }
+  constructor(
+    private categoriaService: CategoriaService,
+    private pessoaService: PessoaService,
+    private errorHandler: ErrorHandlerService,
+    private lancamentoService: LancamentoService,
+    private toasty: ToastyService
+  ) { }
 
   ngOnInit() {
+    this.carregarCategorias();
+    this.carregarPessoas();
   }
 
+  salvar(form: FormControl) {
+    this.lancamentoService.adicionar(this.lancamento)
+        .then(() => {
+          this.toasty.success('Lançamento adicionado com sucesso!');
+
+          form.reset();
+          this.lancamento = new Lancamento();
+        })
+        .catch(erro => this.errorHandler.handle(erro));
+  }
+
+  carregarCategorias() {
+    return this.categoriaService.listarTodas()
+      .then(categorias => {
+        this.categorias = categorias.map(c => ({ label: c.nome, value: c.codigo }));
+      })
+      .catch(erro => this.errorHandler.handle(erro));
+  }
+
+  carregarPessoas() {
+    return this.pessoaService.listarTodas()
+    .then(pessoas => {
+      this.pessoas = pessoas.content.map(p => ({ label: p.nome, value: p.codigo }));
+    })
+    .catch(erro => this.errorHandler.handle(erro));
+  }
 }

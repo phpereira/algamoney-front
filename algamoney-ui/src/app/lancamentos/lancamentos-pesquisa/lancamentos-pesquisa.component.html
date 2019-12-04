@@ -1,6 +1,6 @@
 <div class="container">
   <div class="p-grid">
-    <div class="p-col-12">
+    <div class="p-col-12 lancamento-pesquisa">
       <form autocomplete="off" (ngSubmit)="pesquisar()">
 
         <div class="p-col-12">
@@ -30,7 +30,7 @@
     <div class="p-grid">
       <div class="p-col-12">
         <p-table [value]="lancamentos" [paginator]="true" [rows]="filtro.itensPorPagina" [lazy]=true [totalRecords]="totalRegistros"
-        (onLazyLoad)="aoMudarPagina($event)" [responsive]="true">
+        (onLazyLoad)="aoMudarPagina($event)" [responsive]="true" #tabela>
             <ng-template pTemplate="emptymessage">
                      Nenhum lançamento encontrado
             </ng-template>
@@ -63,10 +63,10 @@
                 <span class="ui-column-title">Valor</span>
                 {{lancamento.valor | currency: 'BRL' : 'symbol' : pt}}
               </td>
-
               <td class="col-actions-content">
-                <a pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top"></a>
-                <button pButton icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="top"></button>
+                  <a pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top"></a>
+                  <button pButton icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="top"
+                  (click)="confirmarExclusao(lancamento)"></button>
               </td>
             </tr>
           </ng-template>

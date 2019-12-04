@@ -1,3 +1,7 @@
 .ui-calendar .ui-datepicker {
   min-width: 100%;
 }
+
+.lancamento-pesquisa {
+  padding: 0px;
+}

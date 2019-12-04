@@ -21,11 +21,13 @@
     "@angular/platform-browser-dynamic": "~8.2.13",
     "@angular/router": "~8.2.13",
     "moment": "^2.24.0",
+    "ng2-toasty": "^4.0.3",
     "ngx-currency": "^2.0.1",
     "primeflex": "^1.0.0",
     "primeicons": "^2.0.0",
     "primeng": "^8.1.1",
     "rxjs": "~6.4.0",
+    "rxjs-compat": "^6.5.3",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"
   },

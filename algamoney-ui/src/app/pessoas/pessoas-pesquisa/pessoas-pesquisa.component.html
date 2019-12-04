@@ -22,7 +22,7 @@
     <div class="p-col-12">
 
       <p-table [value]="pessoas" [paginator]="true" [responsive]="true" [rows]="filtro.itensPorPagina"
-      [lazy]="true" [totalRecords]="totalRegistros" (onLazyLoad)="aoMudarPagina($event)">
+      [lazy]="true" [totalRecords]="totalRegistros" (onLazyLoad)="aoMudarPagina($event)" #tabela>
 
         <ng-template pTemplate="emptymessage">
           Nenhum lançamento encontrado
@@ -52,14 +52,17 @@
               <span class="ui-column-title">Status</span>
               <a href="javascript:;" [ngStyle]="{ color: pessoa.ativo === true ? 'green' : 'red'}"
                 [pTooltip]="pessoa.ativo ? 'Desativar' : 'Ativar'"
-                tooltipPosition="top">{{pessoa.ativo ? 'Ativo' : 'Inativo'}}
+                tooltipPosition="top"
+                (click)="alternarStatus(pessoa)">
+                {{pessoa.ativo ? 'Ativo' : 'Inativo'}}
               </a>
             </td>
 
 
             <td class="col-actions-content">
               <a pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top"></a>
-              <button pButton icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="top"></button>
+              <button pButton icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="top"
+              (click)="confirmarExclusao(pessoa)"></button>
             </td>
           </tr>
         </ng-template>

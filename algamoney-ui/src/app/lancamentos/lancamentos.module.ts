@@ -14,9 +14,6 @@ import { TooltipModule } from 'primeng/tooltip';
 import { LancamentoCadastroComponent } from './lancamentos-cadastro/lancamentos-cadastro.component';
 import { LancamentosPesquisaComponent } from './lancamentos-pesquisa/lancamentos-pesquisa.component';
 
-
-
-
 export const customCurrencyMaskConfig = {
   align: 'right',
   allowNegative: false,
