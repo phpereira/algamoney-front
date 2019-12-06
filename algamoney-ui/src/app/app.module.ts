@@ -1,3 +1,4 @@
+import { SegurancaModule } from './seguranca/seguranca.module';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
@@ -21,12 +22,14 @@ import { PessoasModule } from './pessoas/pessoas.module';
     PessoasModule,
     CoreModule,
     HttpClientModule,
+    SegurancaModule,
 
     MessageModule,
 
     CommonModule,
     BrowserAnimationsModule,
     BrowserModule,
+
     AppRoutingModule
   ],
   providers: [],

@@ -1,3 +1,4 @@
+import { AuthService } from './../seguranca/auth.service';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { LOCALE_ID, NgModule } from '@angular/core';
@@ -29,6 +30,7 @@ import { Title } from '@angular/platform-browser';
     ConfirmationService,
     LancamentoService,
     Title,
+    AuthService,
     { provide: LOCALE_ID, useValue: 'pt' }
   ]
 })
