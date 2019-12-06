@@ -21,11 +21,13 @@
   <div class="p-grid">
     <div class="p-col-12">
 
-      <p-table [value]="pessoas" [paginator]="true" [responsive]="true" [rows]="filtro.itensPorPagina"
-      [lazy]="true" [totalRecords]="totalRegistros" (onLazyLoad)="aoMudarPagina($event)" #tabela>
+      <p-table [value]="pessoas" [paginator]="true" [responsive]="true" [rows]="filtro.itensPorPagina" [lazy]="true"
+        [totalRecords]="totalRegistros" (onLazyLoad)="aoMudarPagina($event)" #tabela>
 
         <ng-template pTemplate="emptymessage">
-          Nenhum lançamento encontrado
+          <tr>
+            <td colspan="6" style="text-align: center;">Nenhum lançamento encontrado</td>
+          </tr>
         </ng-template>
 
         <ng-template pTemplate="header">
@@ -51,8 +53,7 @@
             <td class="col-data-content">
               <span class="ui-column-title">Status</span>
               <a href="javascript:;" [ngStyle]="{ color: pessoa.ativo === true ? 'green' : 'red'}"
-                [pTooltip]="pessoa.ativo ? 'Desativar' : 'Ativar'"
-                tooltipPosition="top"
+                [pTooltip]="pessoa.ativo ? 'Desativar' : 'Ativar'" tooltipPosition="top"
                 (click)="alternarStatus(pessoa)">
                 {{pessoa.ativo ? 'Ativo' : 'Inativo'}}
               </a>
@@ -60,9 +61,10 @@
 
 
             <td class="col-actions-content">
-              <a pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top"></a>
+              <a pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top"
+                [routerLink]="['/pessoas', pessoa.codigo]"></a>
               <button pButton icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="top"
-              (click)="confirmarExclusao(pessoa)"></button>
+                (click)="confirmarExclusao(pessoa)"></button>
             </td>
           </tr>
         </ng-template>
@@ -70,7 +72,7 @@
     </div>
 
     <div class="p-col-12">
-      <a pButton label="Nova Pessoa"></a>
+      <a pButton label="Nova Pessoa" routerLink="/pessoas/novo"></a>
     </div>
 
   </div>

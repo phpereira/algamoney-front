@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 
 export class PessoaFiltro {
   nome: string;
-  pagina: number = 0;
+  pagina = 0;
   itensPorPagina = 5;
 }
 
@@ -74,6 +74,33 @@ export class PessoaService {
     return this.httpClient.post<Pessoa>(
       this.pessoasUrl, pessoa, { headers })
       .toPromise();
+  }
+
+  atualizar(pessoa: Pessoa): Promise<Pessoa> {
+    const headers = new HttpHeaders()
+    .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==')
+    .append('Content-Type', 'application/json');
+
+    return this.httpClient.put(`${this.pessoasUrl}/${pessoa.codigo}`, pessoa, { headers })
+    .toPromise()
+    .then(response => {
+      const pessoaAlterada = response as Pessoa;
+      return pessoaAlterada;
+    });
+  }
+
+  buscarPorCodigo(codigo: number): Promise<Pessoa> {
+    const headers = new HttpHeaders()
+    .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
+
+    return this.httpClient.get(`${this.pessoasUrl}/${codigo}`, { headers })
+      .toPromise()
+      .then(response => {
+
+        const pessoa = response as Pessoa;
+        return pessoa;
+
+      });
   }
 
 }
