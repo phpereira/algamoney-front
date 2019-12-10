@@ -1,11 +1,11 @@
-import { AuthService } from './../../seguranca/auth.service';
-import { ToastyService } from 'ng2-toasty';
-import { ErrorHandlerService } from './../../core/error-handler.service';
-import { PessoaService, PessoaFiltro } from './../pessoa.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { LazyLoadEvent, ConfirmationService } from 'primeng/components/common/api';
-import { Table } from 'primeng/table';
 import { Title } from '@angular/platform-browser';
+import { ToastyService } from 'ng2-toasty';
+import { ConfirmationService, LazyLoadEvent } from 'primeng/components/common/api';
+import { Table } from 'primeng/table';
+import { ErrorHandlerService } from './../../core/error-handler.service';
+import { AuthService } from './../../seguranca/auth.service';
+import { PessoaFiltro, PessoaService } from './../pessoa.service';
 
 
 @Component({
@@ -27,7 +27,7 @@ export class PessoaPesquisaComponent implements OnInit {
     private toasty: ToastyService,
     private confirmation: ConfirmationService,
     private title: Title,
-    private auth: AuthService
+    public auth: AuthService
   ) { }
 
   ngOnInit() {

@@ -3,7 +3,7 @@ import { ToastyService } from 'ng2-toasty';
 import { ErrorHandlerService } from './../../core/error-handler.service';
 import { PessoaService } from './../pessoa.service';
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { NgForm } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -26,7 +26,6 @@ export class PessoaCadastroComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log(this.route.snapshot.params['codigo']);
 
     this.title.setTitle('Nova pessoa')
 
@@ -41,7 +40,7 @@ export class PessoaCadastroComponent implements OnInit {
     return Boolean(this.pessoa.codigo);
   }
 
-  salvar(form: FormControl) {
+  salvar(form: NgForm) {
     if (this.editando) {
       this.atualizarPessoa(form);
     } else {
@@ -49,7 +48,7 @@ export class PessoaCadastroComponent implements OnInit {
     }
   }
 
-  adicionarPessoa(form: FormControl) {
+  adicionarPessoa(form: NgForm) {
     this.pessoaService.adicionar(this.pessoa)
     .then((pessoaAdicionada) => {
       this.toasty.success('Pessoa adicionada com sucesso!');
@@ -61,7 +60,7 @@ export class PessoaCadastroComponent implements OnInit {
     .catch(erro => this.errorHandler.handle(erro));
   }
 
-  atualizarPessoa(form: FormControl) {
+  atualizarPessoa(form: NgForm) {
     this.pessoaService.atualizar(this.pessoa)
       .then(pessoa => {
         this.pessoa = pessoa;
@@ -85,7 +84,7 @@ export class PessoaCadastroComponent implements OnInit {
       .catch(erro => this.errorHandler.handle(erro));
   }
 
-  novo(form: FormControl) {
+  novo(form: NgForm) {
     form.reset();
     this.pessoa = new Pessoa();
     this.router.navigate(['/pessoas/novo']);

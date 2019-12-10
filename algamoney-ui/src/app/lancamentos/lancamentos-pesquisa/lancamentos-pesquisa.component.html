@@ -65,7 +65,7 @@
 
               <td class="col-valor-content" [ngStyle]="{ color: lancamento.tipo === 'DESPESA' ? 'red' : 'blue'}">
                 <span class="ui-column-title">Valor</span>
-                {{lancamento.valor | currency: 'BRL' : 'symbol' : pt}}
+                {{lancamento.valor | currency: 'BRL'}}
               </td>
 
               <td class="col-actions-content">

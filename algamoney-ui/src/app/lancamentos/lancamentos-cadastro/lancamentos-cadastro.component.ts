@@ -1,13 +1,13 @@
-import { ToastyService } from 'ng2-toasty';
-import { LancamentoService } from './../lancamento.service';
-import { PessoaService } from './../../pessoas/pessoa.service';
-import { ErrorHandlerService } from './../../core/error-handler.service';
-import { CategoriaService } from './../../categorias/categoria.service';
 import { Component, OnInit } from '@angular/core';
-import { Lancamento } from 'src/app/core/model';
-import { FormControl } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ToastyService } from 'ng2-toasty';
+import { Lancamento } from 'src/app/core/model';
+import { CategoriaService } from './../../categorias/categoria.service';
+import { ErrorHandlerService } from './../../core/error-handler.service';
+import { PessoaService } from './../../pessoas/pessoa.service';
+import { LancamentoService } from './../lancamento.service';
 
 @Component({
   selector: 'app-lancamentos-cadastro',
@@ -56,7 +56,7 @@ export class LancamentoCadastroComponent implements OnInit {
     return Boolean(this.lancamento.codigo);
   }
 
-  salvar(form: FormControl) {
+  salvar(form: NgForm) {
     if (this.editando) {
       this.atualizarLancamento(form);
     } else {
@@ -64,19 +64,17 @@ export class LancamentoCadastroComponent implements OnInit {
     }
   }
 
-  adicionarLancamento(form: FormControl) {
+  adicionarLancamento(form: NgForm) {
     this.lancamentoService.adicionar(this.lancamento)
       .then((lancamentoAdicionado) => {
         this.toasty.success('Lançamento adicionado com sucesso!');
 
-        // form.reset();
-        // this.lancamento = new Lancamento();
         this.router.navigate(['/lancamentos', lancamentoAdicionado.codigo]);
       })
       .catch(erro => this.errorHandler.handle(erro));
   }
 
-  atualizarLancamento(form: FormControl) {
+  atualizarLancamento(form: NgForm) {
     this.lancamentoService.atualizar(this.lancamento)
       .then(lancamento => {
         this.lancamento = lancamento;
@@ -114,7 +112,7 @@ export class LancamentoCadastroComponent implements OnInit {
       .catch(erro => this.errorHandler.handle(erro));
   }
 
-  novo(form: FormControl) {
+  novo(form: NgForm) {
     form.reset();
 
     setTimeout(function() {

@@ -1,12 +1,13 @@
-import { AuthService } from './../../seguranca/auth.service';
-import { ErrorHandlerService } from './../../core/error-handler.service';
-import { ConfirmationService } from 'primeng/api';
-import { LancamentoService, LancamentoFiltro } from './../lancamento.service';
-import { LazyLoadEvent } from 'primeng/components/common/api';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Table } from 'primeng/table';
-import { ToastyService } from 'ng2-toasty';
 import { Title } from '@angular/platform-browser';
+import { ToastyService } from 'ng2-toasty';
+import { ConfirmationService } from 'primeng/api';
+import { LazyLoadEvent } from 'primeng/components/common/api';
+import { Table } from 'primeng/table';
+import { ErrorHandlerService } from './../../core/error-handler.service';
+import { AuthService } from './../../seguranca/auth.service';
+import { LancamentoFiltro, LancamentoService } from './../lancamento.service';
+
 
 
 @Component({
@@ -27,11 +28,10 @@ export class LancamentosPesquisaComponent implements OnInit {
     private toasty: ToastyService,
     private confirmation: ConfirmationService,
     private title: Title,
-    private auth: AuthService
+    public auth: AuthService
   ) {}
 
   ngOnInit() {
-    //  this.pesquisar();
     this.title.setTitle('Pesquisa de lançamentos');
   }
 

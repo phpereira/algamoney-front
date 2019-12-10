@@ -1,17 +1,19 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from './../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CategoriaService {
 
-  categoriasUrl = 'http://localhost:8080/categorias';
+  categoriasUrl: string;
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {
+    this.categoriasUrl = `${environment.apiUrl}/categorias`;
+  }
 
   listarTodas(): Promise<any> {
-    // const headers = new HttpHeaders().append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
 
     return this.httpClient.get(this.categoriasUrl)
       .toPromise();
