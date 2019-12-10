@@ -10,9 +10,11 @@ import { ErrorHandlerService } from './error-handler.service';
 import { NavbarComponent } from './navbar/navbar.component';
 import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada.component';
 import { Title } from '@angular/platform-browser';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { NaoAutorizadoComponent } from './nao-autorizado.component';
 
 @NgModule({
-  declarations: [NavbarComponent, PaginaNaoEncontradaComponent],
+  declarations: [NavbarComponent, PaginaNaoEncontradaComponent, NaoAutorizadoComponent],
   imports: [
     CommonModule,
     RouterModule,
@@ -31,6 +33,7 @@ import { Title } from '@angular/platform-browser';
     LancamentoService,
     Title,
     AuthService,
+    JwtHelperService,
     { provide: LOCALE_ID, useValue: 'pt' }
   ]
 })

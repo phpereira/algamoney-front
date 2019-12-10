@@ -20,8 +20,6 @@ export class PessoaService {
   pesquisar(filtro: PessoaFiltro): Promise<any> {
     let params = new HttpParams();
 
-    const headers = new HttpHeaders().append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
-
     params = params.set('page', filtro.pagina.toString());
     params = params.set('size', filtro.itensPorPagina.toString());
 
@@ -29,7 +27,7 @@ export class PessoaService {
       params = params.set('nome', filtro.nome);
     }
 
-    return this.httpClient.get(`${this.pessoasUrl}`, { headers, params })
+    return this.httpClient.get(`${this.pessoasUrl}`, { params })
       .toPromise()
       .then(response => {
         const pessoas = response['content']
@@ -42,24 +40,21 @@ export class PessoaService {
   }
 
   listarTodas(): Promise<any> {
-    const headers = new HttpHeaders().append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
 
-    return this.httpClient.get(this.pessoasUrl, { headers })
-        .toPromise();
+    return this.httpClient.get(this.pessoasUrl)
+      .toPromise();
   }
 
   excluir(codigo: number): Promise<void> {
-    const headers = new HttpHeaders().append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
 
-    return this.httpClient.delete(`${this.pessoasUrl}/${codigo}`, { headers })
-    .toPromise()
-    .then(() => null);
+    return this.httpClient.delete(`${this.pessoasUrl}/${codigo}`)
+      .toPromise()
+      .then(() => null);
   }
 
   mudarStatus(codigo: number, ativo: boolean): Promise<void> {
     const headers = new HttpHeaders()
-    .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==')
-    .append('Content-Type', 'application/json');
+      .append('Content-Type', 'application/json');
 
     return this.httpClient.put(`${this.pessoasUrl}/${codigo}/ativo`, ativo, { headers })
       .toPromise()
@@ -67,33 +62,27 @@ export class PessoaService {
   }
 
   adicionar(pessoa: Pessoa): Promise<Pessoa> {
-    const headers = new HttpHeaders()
-    .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==')
-    .append('Content-Type', 'application/json');
+
 
     return this.httpClient.post<Pessoa>(
-      this.pessoasUrl, pessoa, { headers })
+      this.pessoasUrl, pessoa)
       .toPromise();
   }
 
   atualizar(pessoa: Pessoa): Promise<Pessoa> {
-    const headers = new HttpHeaders()
-    .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==')
-    .append('Content-Type', 'application/json');
 
-    return this.httpClient.put(`${this.pessoasUrl}/${pessoa.codigo}`, pessoa, { headers })
-    .toPromise()
-    .then(response => {
-      const pessoaAlterada = response as Pessoa;
-      return pessoaAlterada;
-    });
+    return this.httpClient.put(`${this.pessoasUrl}/${pessoa.codigo}`, pessoa)
+      .toPromise()
+      .then(response => {
+        const pessoaAlterada = response as Pessoa;
+        return pessoaAlterada;
+      });
   }
 
   buscarPorCodigo(codigo: number): Promise<Pessoa> {
-    const headers = new HttpHeaders()
-    .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
 
-    return this.httpClient.get(`${this.pessoasUrl}/${codigo}`, { headers })
+
+    return this.httpClient.get(`${this.pessoasUrl}/${codigo}`)
       .toPromise()
       .then(response => {
 

@@ -1,3 +1,4 @@
+import { AuthService } from './../../seguranca/auth.service';
 import { ToastyService } from 'ng2-toasty';
 import { ErrorHandlerService } from './../../core/error-handler.service';
 import { PessoaService, PessoaFiltro } from './../pessoa.service';
@@ -25,7 +26,8 @@ export class PessoaPesquisaComponent implements OnInit {
     private errorHandler: ErrorHandlerService,
     private toasty: ToastyService,
     private confirmation: ConfirmationService,
-    private title: Title
+    private title: Title,
+    private auth: AuthService
   ) { }
 
   ngOnInit() {

@@ -11,9 +11,9 @@ export class CategoriaService {
   constructor(private httpClient: HttpClient) { }
 
   listarTodas(): Promise<any> {
-    const headers = new HttpHeaders().append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
+    // const headers = new HttpHeaders().append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
 
-    return this.httpClient.get(this.categoriasUrl, { headers })
+    return this.httpClient.get(this.categoriasUrl)
       .toPromise();
   }
 }

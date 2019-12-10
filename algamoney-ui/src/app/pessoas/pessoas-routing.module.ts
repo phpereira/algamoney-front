@@ -5,9 +5,21 @@ import { PessoaCadastroComponent } from './pessoas-cadastro/pessoas-cadastro.com
 
 
 const routes: Routes = [
-  { path: 'pessoas', component: PessoaPesquisaComponent },
-  { path: 'pessoas/novo', component: PessoaCadastroComponent },
-  { path: 'pessoas/:codigo', component: PessoaCadastroComponent },
+  {
+    path: 'pessoas',
+    component: PessoaPesquisaComponent,
+    data: { roles: ['ROLE_PESQUISAR_PESSOA'] }
+  },
+  {
+    path: 'pessoas/novo',
+    component: PessoaCadastroComponent,
+    data: { roles: ['ROLE_CADASTRAR_PESSOA'] }
+  },
+  {
+    path: 'pessoas/:codigo',
+    component: PessoaCadastroComponent,
+    data: { roles: ['ROLE_CADASTRAR_PESSOA'] }
+  },
 ];
 
 @NgModule({
